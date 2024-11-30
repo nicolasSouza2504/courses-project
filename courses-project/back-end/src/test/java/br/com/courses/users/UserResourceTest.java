@@ -1,4 +1,4 @@
-package br.com.courses;
+package br.com.courses.users;
 
 import br.com.courses.domain.user.UserRegisterDTO;
 import br.com.courses.domain.user.UserResponseData;
@@ -36,9 +36,6 @@ class UserResourceTest {
     void testRegisterUserSuccessfully() {
 
         UserRegisterDTO userRegisterDTO = new UserRegisterDTO("John Doe", "johndoe@example.com", "913.625.010-42", new java.util.Date(), "P@ssw0rd123");
-        UserResponseData userResponseData = new UserResponseData(1L, "johndoe@example.com", "John Doe");
-
-        when(userService.create(userRegisterDTO)).thenReturn(userResponseData);
 
         Integer id = given()
                 .contentType("application/json")

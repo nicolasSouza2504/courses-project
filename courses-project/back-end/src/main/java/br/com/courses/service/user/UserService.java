@@ -100,7 +100,7 @@ public class UserService implements IUserService {
 
         user.setName(userRegister.name());
         user.setEmail(userRegister.email());
-        user.setCpf(userRegister.cpf());
+        user.setCpf(userRegister.cpf().replaceAll("[^0-9]", ""));
         user.setBirthDate(DateUtils.truncate(userRegister.birthDate(), 5));
         user.setPassword(passwordEncoder.encode(userRegister.password()));
 

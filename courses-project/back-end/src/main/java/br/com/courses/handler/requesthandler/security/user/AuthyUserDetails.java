@@ -26,13 +26,13 @@ public class AuthyUserDetails implements UserDetails {
 
     public static AuthyUserDetails buildUserDetails(User user) {
 
-        List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("USER"));
+        List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_USER"));
 
         return new AuthyUserDetails(
                 user.getId(),
                 user.getName(),
-                user.getEmail(),
                 user.getPassword(),
+                user.getEmail(),
                 authorities);
 
     }

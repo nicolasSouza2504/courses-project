@@ -1,10 +1,14 @@
 package br.com.courses.resource.auth;
 
 import br.com.courses.domain.user.UserLogin;
+import br.com.courses.exception.BlockedUserException;
 import br.com.courses.handler.requesthandler.security.jwt.JwtUtils;
 import br.com.courses.handler.requesthandler.security.user.AuthyUserDetails;
+import br.com.courses.repository.IUserRepository;
 import br.com.courses.response.ApiResponse;
 import br.com.courses.response.JwtResponse;
+import br.com.courses.service.login.LoginAttemptService;
+import io.micrometer.common.util.StringUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,29 +23,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("${api.prefix}/auth")
 public class AuthResource {
 
-    //R1 - Tela de Login
-//R1.1 - A tela deve permitir que o usuário faça login utilizando CPF ou e-mail e uma senha.
-//R1.2 - Se as credenciais estiverem incorretas, o sistema deve exibir uma mensagem de erro indicando que CPF / E-mail ou senha estão incorretos.
-//R1.3 - O sistema deve implementar medidas de segurança, como limitar tentativas de login consecutivas e aplicar bloqueio temporário após várias tentativas falhas.
-//R1.4 - Ao clicar no botão cadastre-se, deve ser redirecionado para a tela de cadastro de pessoa
-//R1.5 - Criar testes unitários para verificar o comportamento da tela de login.
-
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
+    private final IUserRepository userRepository;
+    private final LoginAttemptService loginAttemptService;
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse> login(@Valid @RequestBody UserLogin request) {
 
+        String email = null;
+
         try {
+
+            email = StringUtils.isNotEmpty(request.email()) ? request.email() : getEmail(request.cpf());
 
             Authentication authentication = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(
-                            request.email(), request.password()));
+                            email, request.password()));
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -54,7 +59,31 @@ public class AuthResource {
             return ResponseEntity.ok(new ApiResponse("Login Successful", jwtResponse));
 
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse(e.getMessage(), null));
+
+            try {
+
+                loginAttemptService.incrementFailedAttempts(userRepository.findByEmail(email));
+
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse(e.getMessage(), null));
+
+            } catch (BlockedUserException ex) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ApiResponse(ex.getMessage(), null));
+            }
+
+        }
+
+    }
+
+    private String getEmail(String cpf) {
+
+        if (StringUtils.isNotEmpty(cpf)) {
+
+            cpf = cpf.replaceAll("[^0-9]", "");
+
+            return Optional.ofNullable(userRepository.findByCpf(cpf)).map(user -> user.getEmail()).orElse(null);
+
+        } else {
+            return null;
         }
 
     }
