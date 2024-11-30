@@ -20,15 +20,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService implements IUserService {
 
-//R2.7 - Integração da Pessoa
-//	R2.7.1 - Ao salvar, a pessoa deve ser enviada para a fila de integração com a API (RabbitMQ)
-//R2.7.2 - O envio para a fila de integração deve ocorrer de forma assíncrona para não impactar a performance da aplicação.
-//R2.7.3 - Deve haver um mecanismo de retry para tentativas falhas de envio à fila, com um número máximo de tentativas configurável.
-//	R2.7.4 - O sistema deve validar se a pessoa já existe na API antes de enviar a mensagem à fila, para evitar duplicações.
-
-//R2.8 - Criar testes unitários
-//R2.6.2 - Após salvar os dados com sucesso, o sistema deve autenticar automaticamente o usuário e redirecioná-lo para a tela de inscrição de cursos.
-
     private final IUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -36,7 +27,7 @@ public class UserService implements IUserService {
     public UserResponseData create(UserRegisterDTO userRegister) {
 
         return Optional.of(userRegister)
-                .filter(user -> !userRepository.existsByCpf(userRegister.cpf()))
+                .filter(user -> !userRepository.existsByCpf(userRegister.cpf().replaceAll("[^0-9]", "")))
                 .map(req -> {
 
                     validateFields(userRegister);
@@ -101,7 +92,7 @@ public class UserService implements IUserService {
         user.setName(userRegister.name());
         user.setEmail(userRegister.email());
         user.setCpf(userRegister.cpf().replaceAll("[^0-9]", ""));
-        user.setBirthDate(DateUtils.truncate(userRegister.birthDate(), 5));
+        user.setBirthDate(userRegister.birthDate() != null ? DateUtils.truncate(userRegister.birthDate(), 5) : null);
         user.setPassword(passwordEncoder.encode(userRegister.password()));
 
         return user;

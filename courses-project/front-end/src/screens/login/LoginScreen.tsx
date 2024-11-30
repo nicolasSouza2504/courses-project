@@ -1,90 +1,78 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Cookies from 'universal-cookie';
-import './Login.css';
+import React, {ChangeEvent, useState} from 'react';
+import './Login.scss';
 import logo from '../../images/logo.svg';
 import Response from '../../models/Response';
+import LoginService from "../../services/login/LoginService";
+import UserLogin from "../../models/user/UserLogin";
 
 const Login: React.FC = () => {
 
     const [userName, setUserName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [responseObj, setResponseObj] = useState<Response | null>(null);
-    const navigate = useNavigate();
 
-    const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
-
-        event.preventDefault();
+    const handleLogin = async () => {
 
         try {
-
-            const response = await fetch('http://localhost:8080/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userName, password }),
-            });
-
-            if (response.status === 200) {
-                const session = await response.json();
-                const cookies = new Cookies();
-                cookies.set('authToken', session.authToken);
-                setResponseObj({ message: 'Logged in successfully', error: false });
-                navigate('/private-path');
-            } else {
-                const res = await response.json();
-                setResponseObj({ message: `Error: ${res.message}`, error: true });
-            }
-
+            const response = await LoginService.login(buildLoginUser());
         } catch (error) {
-            setResponseObj({ message: 'Login failed. Please try again.', error: true });
+            console.log(error)
         }
 
     };
+
+    const buildLoginUser = (): UserLogin =>  {
+        return {
+            [userName.indexOf("@") !== -1 ? 'email' : 'cpf']: userName,
+            password: password
+        };
+    }
 
     const handleUserNameChange = (e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value);
 
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <div>
-                    <div className="Logo-div">
-                        <h2>Login</h2>
-                        <img src={logo} className="App-logo" alt="logo" />
-                    </div>
-                    <form onSubmit={handleLogin}>
-                        <div className="Input-div">
-                            <label htmlFor="userName">Username:</label>
-                            <input
-                                type="text"
-                                id="userName"
-                                value={userName}
-                                onChange={handleUserNameChange}
-                                required
-                            />
+        <div className="LoginContainer">
+            <div className="App">
+                <header className="App-header">
+                    <div>
+                        <div className="Logo-div">
+                            <h2>Login</h2>
+                            <img src={logo} className="App-logo" alt="logo"/>
                         </div>
-                        <div className="Input-div">
-                            <label htmlFor="password">Password:</label>
-                            <input
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={handlePasswordChange}
-                                required
-                            />
-                        </div>
-                        {responseObj && (
-                            <div className={responseObj.error ? 'Message-response-error' : 'Message-response-success'}>
-                                <p>{responseObj.message}</p>
+                        <div>
+                            <div className="Input-div">
+                                <label htmlFor="userName">Email/Cpf</label>
+                                <input
+                                    type="text"
+                                    id="userName"
+                                    value={userName}
+                                    onChange={handleUserNameChange}
+                                    required
+                                />
                             </div>
-                        )}
-                        <button type="submit">Login</button>
-                    </form>
-                </div>
-            </header>
+                            <div className="Input-div">
+                                <label htmlFor="password">Password:</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    value={password}
+                                    onChange={handlePasswordChange}
+                                    required
+                                />
+                            </div>
+                            {responseObj && (
+                                <div
+                                    className={responseObj.error ? 'Message-response-error' : 'Message-response-success'}>
+                                    <p>{responseObj.message}</p>
+                                </div>
+                            )}
+                            <button onClick={handleLogin}>Login</button>
+                        </div>
+                    </div>
+                </header>
+            </div>
         </div>
     );
 };
