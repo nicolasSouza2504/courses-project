@@ -4,5 +4,5 @@ import br.com.courses.domain.user.UserRegisterDTO;
 import br.com.courses.domain.user.UserResponseData;
 
 public interface IUserService {
-    UserResponseData createUser(UserRegisterDTO userRegister);
+    UserResponseData create(UserRegisterDTO userRegister);
 }

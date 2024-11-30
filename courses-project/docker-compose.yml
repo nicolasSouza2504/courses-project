@@ -3,11 +3,11 @@ version: '3.8'
 services:
   db:
     image: postgres:13
-    container_name: postgres-courses
+    container_name: postgres-courses-web
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=dbcourses
-      - POSTGRES_DB=courses-db
+      - POSTGRES_DB=courses-db-web
     ports:
       - "5432:5432"
     volumes:

@@ -26,7 +26,7 @@ public class User extends DefaultEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "cpf")
+    @Column(name = "cpf", unique = true)
     private String cpf;
 
 }

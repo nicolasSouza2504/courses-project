@@ -1,10 +1,14 @@
 package br.com.courses.setup;
 
 
+import br.com.courses.domain.user.User;
 import br.com.courses.domain.user.UserRegisterDTO;
+import br.com.courses.repository.IUserRepository;
 import br.com.courses.service.user.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -15,33 +19,29 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
 
-    private final IUserService iUserService;
+    private final IUserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
 
         try {
-            createUser();
-
-        } catch (Exception e) {}
-
-    }
-
-    public void createUser() {
-
-        UserRegisterDTO userRegister = buildDefaultAdmin();
-
-        iUserService.createUser(userRegister);
+            userRepository.save(buildDefaultAdmin());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
-    private UserRegisterDTO buildDefaultAdmin() {
+    private User buildDefaultAdmin() {
 
-        return new UserRegisterDTO("admin adm",
-                "admin@gmail.com",
-                "00000000000",
-                new Date(),
-                "admin@65468*/62.98+/*52989856*//*/");
+        User user = new User();
+
+        user.setName("ADM");
+        user.setCpf("000000000");
+        user.setPassword(passwordEncoder.encode("123456"));
+
+        return user;
 
     }
 

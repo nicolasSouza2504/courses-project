@@ -14,6 +14,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtils {
+
     @Value("${auth.token.jwtSecret}")
     private String jwtSecret;
 

@@ -33,7 +33,7 @@ public class UserService implements IUserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public UserResponseData createUser(UserRegisterDTO userRegister) {
+    public UserResponseData create(UserRegisterDTO userRegister) {
 
         return Optional.of(userRegister)
                 .filter(user -> !userRepository.existsByCpf(userRegister.email()))
@@ -72,7 +72,7 @@ public class UserService implements IUserService {
             validation.add("Email", "Informe um email válido");
         }
 
-        if (validPassword(userRegister.password())) {
+        if (!validPassword(userRegister.password())) {
             validation.add("Password", "Informe a senha");
         }
         
