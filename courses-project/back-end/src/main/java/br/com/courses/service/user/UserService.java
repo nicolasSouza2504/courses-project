@@ -36,7 +36,7 @@ public class UserService implements IUserService {
     public UserResponseData create(UserRegisterDTO userRegister) {
 
         return Optional.of(userRegister)
-                .filter(user -> !userRepository.existsByCpf(userRegister.email()))
+                .filter(user -> !userRepository.existsByCpf(userRegister.cpf()))
                 .map(req -> {
 
                     validateFields(userRegister);
@@ -50,6 +50,11 @@ public class UserService implements IUserService {
                 })
                 .orElseThrow(() -> new UserAlreadyExistsException("Usuário já cadastrado"));
 
+    }
+
+    @Override
+    public void delete(Long id) {
+        userRepository.deleteById(id);
     }
 
     private void validateFields(UserRegisterDTO userRegister) {
@@ -73,7 +78,7 @@ public class UserService implements IUserService {
         }
 
         if (!validPassword(userRegister.password())) {
-            validation.add("Password", "Informe a senha");
+            validation.add("Password", "Informe uma senha válida");
         }
         
         validation.throwIfHasErrors();

@@ -2,17 +2,12 @@ package br.com.courses.setup;
 
 
 import br.com.courses.domain.user.User;
-import br.com.courses.domain.user.UserRegisterDTO;
 import br.com.courses.repository.IUserRepository;
-import br.com.courses.service.user.IUserService;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 @Service
 @Component
@@ -23,13 +18,11 @@ public class DataInitializer implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         try {
             userRepository.save(buildDefaultAdmin());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {}
 
     }
 
