@@ -20,9 +20,6 @@ public class User extends DefaultEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "second_name")
-    private String secondName;
-
     @Email
     private String email;
 
