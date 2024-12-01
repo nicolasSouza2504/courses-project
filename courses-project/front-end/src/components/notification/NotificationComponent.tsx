@@ -13,9 +13,9 @@ const NotificationComponent = {
             container: "top-center",
             animationIn: ["animated", "fadeIn"],
             animationOut: ["animated", "fadeOut"],
-            // dismiss: {
-            //     duration: 2000
-            // },
+            dismiss: {
+                duration: 2000
+            },
             content: (
                 <div style={NotificationComponent.getNotificationStyle(type)}>
                     <strong>{title}</strong> - {message}
