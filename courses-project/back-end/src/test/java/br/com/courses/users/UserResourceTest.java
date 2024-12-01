@@ -1,7 +1,6 @@
 package br.com.courses.users;
 
 import br.com.courses.domain.user.UserRegisterDTO;
-import br.com.courses.domain.user.UserResponseData;
 import br.com.courses.service.user.IUserService;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +14,6 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)

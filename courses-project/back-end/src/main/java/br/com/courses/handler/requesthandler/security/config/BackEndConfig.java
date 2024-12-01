@@ -76,8 +76,7 @@ public class BackEndConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/login",
-                                "/api/v1/user/add",
-                                "/api/v1/user/delete",
+                                "/api/v1/user/**",
                                 "/api/v1/ping")
                         .permitAll()
                         .anyRequest()

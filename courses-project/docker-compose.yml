@@ -14,5 +14,30 @@ services:
       - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
+  db-api:
+    image: postgres:13
+    container_name: postgres-courses-web-api
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=dbcoursesapi
+      - POSTGRES_DB=courses-db-api
+    ports:
+      - "5433:5433"
+    volumes:
+      - pgdata-api:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: unless-stopped
+
 volumes:
   pgdata:
+  pgdata-api:
