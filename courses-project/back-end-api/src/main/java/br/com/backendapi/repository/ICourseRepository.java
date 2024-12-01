@@ -14,7 +14,7 @@ public interface ICourseRepository extends JpaRepository<Course, Long> {
     @Query("SELECT new br.com.backendapi.domain.course.CourseExibitionData(" +
             "    c.name, " +
             "    COUNT(sub.id), " +
-            "    CAST((c.avaiableSubscribes - COUNT(sub.id)) AS long)) " +
+            "    CAST(c.avaiableSubscribes AS long)) " +
             "FROM Course c " +
             "LEFT JOIN Subscribe sub ON sub.idCourse = c.id " +
             "GROUP BY c.id, c.avaiableSubscribes, c.name " +
