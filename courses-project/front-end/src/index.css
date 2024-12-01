@@ -19,3 +19,10 @@ body {
   background-color: #4571c2;
 }
 
+.Notifications {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}

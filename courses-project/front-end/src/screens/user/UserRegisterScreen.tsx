@@ -58,7 +58,6 @@ const UserRegisterScreen: React.FC = () => {
                     NotificationComponent.triggerNotification("danger", "Erro ao cadastradar usuário!", "Error!");
                 }
 
-
             }
 
             setIsSubmitting(false);
@@ -69,7 +68,9 @@ const UserRegisterScreen: React.FC = () => {
 
     return (
         <div className="RegistrationContainer">
-            <ReactNotifications></ReactNotifications>
+            <div className="Notifications">
+                <ReactNotifications></ReactNotifications>
+            </div>
             <form className="registration-form" onSubmit={handleSubmit(onSubmit)}>
                 <h2>Cadastro de usuário</h2>
                 <div className="input-group">

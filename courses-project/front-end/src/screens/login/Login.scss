@@ -1,5 +1,4 @@
 .LoginContainer {
-
     border-radius: 8px;
     display: flex;
     justify-content: center;
@@ -25,6 +24,7 @@
         height: 60vh;
         border-radius: 8px;
         text-align: center;
+        padding: 20px;
     }
 
     .Input-div {
@@ -46,6 +46,8 @@
             border-radius: 4px;
             font-size: 14px;
             outline: none;
+            width: 15vw;
+            height: 2.5vh;
 
             &:focus {
                 border-color: #4571c2;
@@ -99,4 +101,63 @@
             }
         }
     }
+
+    @media (max-width: 1024px) {
+        .App {
+            width: 40vw;
+            height: auto;
+            padding: 15px;
+        }
+
+        .Input-div input,
+        .Input-div select {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .App {
+            width: 60vw;
+        }
+
+        .Input-div input,
+        .Input-div select {
+            width: 85%;
+        }
+
+        button {
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .App {
+            width: 90%;
+        }
+
+        .Input-div input,
+        .Input-div select {
+            width: 100%;
+        }
+
+        .Logo-div .App-logo {
+            width: 80px;
+        }
+
+        button {
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        label {
+            font-size: 12px;
+        }
+
+        .Message-response-error,
+        .Message-response-success,
+        span {
+            font-size: 12px;
+        }
+    }
+
 }

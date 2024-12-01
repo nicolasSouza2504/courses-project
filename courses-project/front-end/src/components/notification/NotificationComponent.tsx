@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React from 'react';
 import {Store} from "react-notifications-component";
 
 const NotificationComponent = {
@@ -13,9 +13,9 @@ const NotificationComponent = {
             container: "top-center",
             animationIn: ["animated", "fadeIn"],
             animationOut: ["animated", "fadeOut"],
-            dismiss: {
-                duration: 2000
-            },
+            // dismiss: {
+            //     duration: 2000
+            // },
             content: (
                 <div style={NotificationComponent.getNotificationStyle(type)}>
                     <strong>{title}</strong> - {message}

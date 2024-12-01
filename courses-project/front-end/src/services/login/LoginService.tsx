@@ -9,11 +9,11 @@ const UserLoginService =  {
 
     login: async (user: UserLogin): Promise<AxiosResponse> => {
 
-        let response: AxiosResponse<Session> = await Service.post('/auth/login', user);
+        let response: AxiosResponse = await Service.post('/auth/login', user);
 
-        if (isSession(response.data)) {
+        if (response.data && isSession(response.data.data)) {
 
-            let session: Session = response.data;
+            let session: Session = response.data.data;
 
             localStorage.setItem("auth-token", session.token);
 

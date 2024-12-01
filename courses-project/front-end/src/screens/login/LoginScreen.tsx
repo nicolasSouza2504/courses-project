@@ -4,53 +4,90 @@ import logo from '../../images/logo.svg';
 import Response from '../../models/Response';
 import LoginService from "../../services/login/LoginService";
 import UserLogin from "../../models/user/UserLogin";
+import InputMask from "react-input-mask";
+import NotificationComponent from "../../components/notification/NotificationComponent";
+import {useNavigate} from "react-router-dom";
+import {ReactNotifications} from "react-notifications-component";
 
 const Login: React.FC = () => {
 
-    const [userName, setUserName] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [cpf, setCPF] = useState<string>("");
     const [password, setPassword] = useState<string>('');
     const [responseObj, setResponseObj] = useState<Response | null>(null);
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
 
         try {
+
             const response = await LoginService.login(buildLoginUser());
-        } catch (error) {
-            console.log(error)
+
+            if (response.status == 200) {
+
+                NotificationComponent.triggerNotification("success", "Usuário autenticado com sucesso!", "Sucesso!");
+
+                setTimeout(() => {
+                    navigate('/');
+                }, 3000);
+
+            } else {
+                NotificationComponent.triggerNotification("danger", "Erro ao autenticar!", "Erro!");
+            }
+
+        } catch (error: any) {
+
+            if (error.response && error.response.data && error.response.data.message) {
+                NotificationComponent.triggerNotification("danger", error.response.data.message, "Erro!");
+            } else {
+                NotificationComponent.triggerNotification("danger", "Erro ao autenticar!", "Erro!");
+            }
         }
 
     };
 
     const buildLoginUser = (): UserLogin =>  {
         return {
-            [userName.indexOf("@") !== -1 ? 'email' : 'cpf']: userName,
+            email: email,
+            cpf: cpf,
             password: password
         };
     }
 
-    const handleUserNameChange = (e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value);
+    const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
+
+    const handleCPFChange = (e: ChangeEvent<HTMLInputElement>) => setCPF(e.target.value);
 
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
 
     return (
         <div className="LoginContainer">
+            <div className="Notifications">
+                <ReactNotifications></ReactNotifications>
+            </div>
             <div className="App">
                 <header className="App-header">
                     <div>
                         <div className="Logo-div">
-                            <h2>Login</h2>
                             <img src={logo} className="App-logo" alt="logo"/>
+                            <h2>Login</h2>
                         </div>
                         <div>
                             <div className="Input-div">
-                                <label htmlFor="userName">Email/Cpf</label>
+                                <label htmlFor="email">Email</label>
                                 <input
                                     type="text"
-                                    id="userName"
-                                    value={userName}
-                                    onChange={handleUserNameChange}
+                                    id="email"
+                                    value={email}
+                                    onChange={handleEmailChange}
                                     required
                                 />
+                            </div>
+                            <div className="Input-div">
+                                <label htmlFor="cpf">CPF</label>
+                                <InputMask mask="999.999.999-99" maskChar=" " id="cpf" onChange={handleCPFChange}>
+                                    {(inputProps: any) => <input {...inputProps} id="cpf" />}
+                                </InputMask>
                             </div>
                             <div className="Input-div">
                                 <label htmlFor="password">Password:</label>
