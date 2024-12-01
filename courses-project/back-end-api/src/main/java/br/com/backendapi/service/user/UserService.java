@@ -41,8 +41,6 @@ public class UserService implements IUserService {
 
                     userRepository.save(user);
 
-                    rabbitMQSender.sendMessage("user.exchange", "save", new Gson().toJson(user));
-
                     return new UserResponseData(user);
 
                 })
