@@ -30,7 +30,7 @@ public class AuthyUserDetails implements UserDetails {
 
         return new AuthyUserDetails(
                 user.getId(),
-                user.getName(),
+                user.getEmail(),
                 user.getPassword(),
                 user.getEmail(),
                 authorities);
