@@ -26,6 +26,40 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
     restart: unless-stopped
 
+  backendapi:
+    build: ./back-end-api
+    container_name: backendapi-courses
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8181:8181"
+    depends_on:
+      - db
+      - rabbitmq
+    restart: unless-stopped
+
+  backend:
+    build: ./back-end
+    container_name: backend-courses
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backendapi
+      - db
+      - rabbitmq
+    restart: unless-stopped
+
+  front-end:
+    build: ./front-end
+    container_name: frontend-courses
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
 volumes:
   pgdata:
   pgdata-api:
