@@ -22,6 +22,7 @@ public class AuthyUserDetails implements UserDetails {
     private String email;
     private String senha;
     private String name;
+    private String cpf;
     private List<GrantedAuthority> authorities;
 
     public static AuthyUserDetails buildUserDetails(User user) {
@@ -33,6 +34,7 @@ public class AuthyUserDetails implements UserDetails {
                 user.getEmail(),
                 user.getPassword(),
                 user.getEmail(),
+                user.getCpf(),
                 authorities);
 
     }

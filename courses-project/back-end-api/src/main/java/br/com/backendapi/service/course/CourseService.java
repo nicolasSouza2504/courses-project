@@ -60,6 +60,8 @@ public class CourseService implements ICourseService {
 
             createSubscription(course, user);
 
+        } catch (Throwable t) {
+            throw t;
         } finally {
             lock.unlock();
         }

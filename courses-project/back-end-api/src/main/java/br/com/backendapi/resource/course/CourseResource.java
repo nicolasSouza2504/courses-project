@@ -42,7 +42,7 @@ public class CourseResource {
 
         courseService.subscribe(registerSubscriptionDTO);
 
-        return ResponseEntity.ok("Inscrição realizada com sucesso");
+        return ResponseEntity.ok(registerSubscriptionDTO);
 
     }
 

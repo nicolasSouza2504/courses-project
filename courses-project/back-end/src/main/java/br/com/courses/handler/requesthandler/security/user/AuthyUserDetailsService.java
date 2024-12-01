@@ -24,7 +24,7 @@ public class AuthyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         User user = Optional.ofNullable(userRepository.findByEmail(email))
-                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
         if (!loginAttemptService.isBlocked(user)) {
             return AuthyUserDetails.buildUserDetails(user);

@@ -37,10 +37,10 @@ const Login: React.FC = () => {
 
         } catch (error: any) {
 
-            if (error.response && error.response.data && error.response.data.message) {
+            if (error.response && error.response.data && error.response.data.data) {
+                NotificationComponent.triggerNotification("danger", error.response.data.data, "Erro!");
+            } else if (error.response && error.response.data && error.response.data.message){
                 NotificationComponent.triggerNotification("danger", error.response.data.message, "Erro!");
-            } else {
-                NotificationComponent.triggerNotification("danger", "Erro ao autenticar!", "Erro!");
             }
         }
 

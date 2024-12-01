@@ -1,12 +1,9 @@
 package br.com.courses.resource.course;
 
 
-import br.com.courses.domain.course.CourseExibitionData;
 import br.com.courses.domain.subscribe.RegisterSubscriptionDTO;
 import br.com.courses.service.WebService;
-import br.com.courses.service.course.ICourseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +25,7 @@ public class CourseResource {
 
     @PostMapping("/subscribe")
     public ResponseEntity subscribe(@RequestBody RegisterSubscriptionDTO registerSubscriptionDTO) {
-        return webService.post("/courses/subscribe", registerSubscriptionDTO, ResponseEntity.class);
+        return webService.post("/courses/subscribe", registerSubscriptionDTO, Object.class);
     }
 
 }

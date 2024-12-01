@@ -16,7 +16,7 @@ const UserLoginService =  {
             let session: Session = response.data.data;
 
             localStorage.setItem("auth-token", session.token);
-
+            localStorage.setItem("cpf", session.cpf);
             return response;
 
         } else {

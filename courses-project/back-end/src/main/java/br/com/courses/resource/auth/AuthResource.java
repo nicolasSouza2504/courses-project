@@ -57,7 +57,7 @@ public class AuthResource {
 
             AuthyUserDetails userDetails = (AuthyUserDetails) authentication.getPrincipal();
 
-            JwtResponse jwtResponse = new JwtResponse(userDetails.getId(), jwt);
+            JwtResponse jwtResponse = new JwtResponse(userDetails.getId(), jwt, userDetails.getCpf());
 
             return ResponseEntity.ok(new ApiResponse("Login Successful", jwtResponse));
 

@@ -1,4 +1,4 @@
 export default interface RegisterSubscriptionDTO {
-    courseId: number;
-    cpf: string;
+    idCourse: number;
+    cpf: string | null;
 }
