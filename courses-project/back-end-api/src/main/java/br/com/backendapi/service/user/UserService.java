@@ -25,8 +25,6 @@ import java.util.Optional;
 public class UserService implements IUserService {
 
     private final IUserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final RabbitMQSender rabbitMQSender;
 
     @Override
     public UserResponseData create(UserRegisterDTO userRegister) {
@@ -98,7 +96,7 @@ public class UserService implements IUserService {
         user.setEmail(userRegister.email());
         user.setCpf(userRegister.cpf().replaceAll("[^0-9]", ""));
         user.setBirthDate(userRegister.birthDate() != null ? DateUtils.truncate(userRegister.birthDate(), 5) : null);
-        user.setPassword(passwordEncoder.encode(userRegister.password()));
+        user.setPassword(userRegister.password());
 
         return user;
 

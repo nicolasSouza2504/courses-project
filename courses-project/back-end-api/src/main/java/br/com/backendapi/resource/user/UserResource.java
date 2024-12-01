@@ -2,6 +2,7 @@ package br.com.backendapi.resource.user;
 
 import br.com.backendapi.domain.user.UserRegisterDTO;
 import br.com.backendapi.domain.user.UserResponseData;
+import br.com.backendapi.repository.IUserRepository;
 import br.com.backendapi.service.user.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserResource {
 
     private final IUserService userService;
+    private final IUserRepository userRepository;
 
     @PostMapping
     public ResponseEntity<UserResponseData> register(@RequestBody UserRegisterDTO userRegisterDTO) {

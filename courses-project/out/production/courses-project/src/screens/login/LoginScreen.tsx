@@ -106,6 +106,7 @@ const Login: React.FC = () => {
                                 </div>
                             )}
                             <button onClick={handleLogin}>Login</button>
+                            <span>Cadastre-se clicando <a href="user">aqui</a></span>
                         </div>
                     </div>
                 </header>
