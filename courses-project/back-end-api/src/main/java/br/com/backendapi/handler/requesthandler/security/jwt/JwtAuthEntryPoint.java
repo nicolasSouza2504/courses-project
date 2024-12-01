@@ -1,4 +1,4 @@
-package br.com.courses.handler.requesthandler.security.jwt;
+package br.com.backendapi.handler.requesthandler.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;

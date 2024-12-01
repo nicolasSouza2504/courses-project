@@ -1,6 +1,6 @@
-package br.com.courses.handler.requesthandler.security.jwt;
+package br.com.backendapi.handler.requesthandler.security.jwt;
 
-import br.com.courses.handler.requesthandler.security.user.AuthyUserDetails;
+import br.com.backendapi.handler.requesthandler.security.user.AuthyUserDetails;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

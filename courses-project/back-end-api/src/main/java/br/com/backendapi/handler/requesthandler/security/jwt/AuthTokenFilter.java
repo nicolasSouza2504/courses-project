@@ -1,7 +1,7 @@
-package br.com.courses.handler.requesthandler.security.jwt;
+package br.com.backendapi.handler.requesthandler.security.jwt;
 
-import br.com.courses.handler.requesthandler.security.user.AuthyUserDetailsService;
-import br.com.courses.response.ApiResponse;
+import br.com.backendapi.handler.requesthandler.security.user.AuthyUserDetailsService;
+import br.com.backendapi.response.ApiResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;

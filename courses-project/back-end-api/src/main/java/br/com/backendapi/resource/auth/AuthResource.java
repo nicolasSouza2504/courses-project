@@ -1,13 +1,13 @@
-package br.com.courses.resource.auth;
+package br.com.backendapi.resource.auth;
 
-import br.com.courses.domain.user.UserLogin;
-import br.com.courses.exception.BlockedUserException;
-import br.com.courses.handler.requesthandler.security.jwt.JwtUtils;
-import br.com.courses.handler.requesthandler.security.user.AuthyUserDetails;
-import br.com.courses.repository.IUserRepository;
-import br.com.courses.response.ApiResponse;
-import br.com.courses.response.JwtResponse;
-import br.com.courses.service.login.LoginAttemptService;
+import br.com.backendapi.domain.user.UserLogin;
+import br.com.backendapi.exception.BlockedUserException;
+import br.com.backendapi.handler.requesthandler.security.jwt.JwtUtils;
+import br.com.backendapi.handler.requesthandler.security.user.AuthyUserDetails;
+import br.com.backendapi.repository.IUserRepository;
+import br.com.backendapi.response.ApiResponse;
+import br.com.backendapi.response.JwtResponse;
+import br.com.backendapi.service.login.LoginAttemptService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

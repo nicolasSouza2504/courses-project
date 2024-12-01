@@ -1,4 +1,4 @@
-package br.com.courses.util;
+package br.com.backendapi.util;
 
 public class CPFCNPJValidator {
 

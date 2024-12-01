@@ -1,7 +1,7 @@
-package br.com.courses.service.user;
+package br.com.backendapi.service.user;
 
-import br.com.courses.domain.user.UserRegisterDTO;
-import br.com.courses.domain.user.UserResponseData;
+import br.com.backendapi.domain.user.UserRegisterDTO;
+import br.com.backendapi.domain.user.UserResponseData;
 
 public interface IUserService {
     UserResponseData create(UserRegisterDTO userRegister);

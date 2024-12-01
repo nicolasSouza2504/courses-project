@@ -1,4 +1,4 @@
-package br.com.courses.resource;
+package br.com.backendapi.resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,0 +1,9 @@
+CREATE DATABASE coursesdbapi;
+CREATE USER web_user WITH ENCRYPTED PASSWORD 'postgres';
+CREATE USER api_user WITH ENCRYPTED PASSWORD 'postgres';
+
+GRANT ALL PRIVILEGES ON DATABASE courses-db-web TO web_user;
+GRANT ALL PRIVILEGES ON DATABASE courses-db-api TO api_user;
+
+
+

@@ -1,8 +1,8 @@
-package br.com.courses.resource.user;
+package br.com.backendapi.resource.user;
 
-import br.com.courses.domain.user.UserRegisterDTO;
-import br.com.courses.domain.user.UserResponseData;
-import br.com.courses.service.user.IUserService;
+import br.com.backendapi.domain.user.UserRegisterDTO;
+import br.com.backendapi.domain.user.UserResponseData;
+import br.com.backendapi.service.user.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

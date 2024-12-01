@@ -1,4 +1,4 @@
-package br.com.courses.exception;
+package br.com.backendapi.exception;
 
 import lombok.Data;
 

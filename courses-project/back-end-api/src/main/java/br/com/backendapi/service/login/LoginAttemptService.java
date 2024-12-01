@@ -1,8 +1,8 @@
-package br.com.courses.service.login;
+package br.com.backendapi.service.login;
 
-import br.com.courses.domain.user.User;
-import br.com.courses.exception.BlockedUserException;
-import br.com.courses.repository.IUserRepository;
+import br.com.backendapi.domain.user.User;
+import br.com.backendapi.exception.BlockedUserException;
+import br.com.backendapi.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;

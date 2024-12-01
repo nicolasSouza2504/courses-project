@@ -1,6 +1,6 @@
-package br.com.courses.handler.requesthandler.security.user;
+package br.com.backendapi.handler.requesthandler.security.user;
 
-import br.com.courses.domain.user.User;
+import br.com.backendapi.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package br.com.courses.domain;
+package br.com.backendapi.domain;
 
 
 import jakarta.persistence.*;

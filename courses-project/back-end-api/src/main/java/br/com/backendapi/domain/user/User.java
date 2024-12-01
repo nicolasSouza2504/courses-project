@@ -1,6 +1,6 @@
-package br.com.courses.domain.user;
+package br.com.backendapi.domain.user;
 
-import br.com.courses.domain.DefaultEntity;
+import br.com.backendapi.domain.DefaultEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

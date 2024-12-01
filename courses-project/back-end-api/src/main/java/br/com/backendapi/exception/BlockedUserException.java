@@ -1,4 +1,4 @@
-package br.com.courses.exception;
+package br.com.backendapi.exception;
 
 public class BlockedUserException extends RuntimeException {
 

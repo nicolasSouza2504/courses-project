@@ -1,4 +1,4 @@
-package br.com.courses.service.rabbitmq;
+package br.com.backendapi.service.rabbitmq;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;

@@ -1,8 +1,8 @@
-package br.com.courses.handler.responsehandler;
+package br.com.backendapi.handler.responsehandler;
 
 
-import br.com.courses.exception.UserAlreadyExistsException;
-import br.com.courses.exception.Validation;
+import br.com.backendapi.exception.UserAlreadyExistsException;
+import br.com.backendapi.exception.Validation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

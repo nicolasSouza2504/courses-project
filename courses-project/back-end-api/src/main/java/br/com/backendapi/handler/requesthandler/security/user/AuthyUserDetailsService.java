@@ -1,9 +1,9 @@
-package br.com.courses.handler.requesthandler.security.user;
+package br.com.backendapi.handler.requesthandler.security.user;
 
-import br.com.courses.domain.user.User;
-import br.com.courses.exception.BlockedUserException;
-import br.com.courses.repository.IUserRepository;
-import br.com.courses.service.login.LoginAttemptService;
+import br.com.backendapi.domain.user.User;
+import br.com.backendapi.exception.BlockedUserException;
+import br.com.backendapi.repository.IUserRepository;
+import br.com.backendapi.service.login.LoginAttemptService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

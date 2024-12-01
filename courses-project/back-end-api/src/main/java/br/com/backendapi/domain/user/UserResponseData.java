@@ -1,4 +1,4 @@
-package br.com.courses.domain.user;
+package br.com.backendapi.domain.user;
 
 public record UserResponseData(Long id, String email, String nome) {
 

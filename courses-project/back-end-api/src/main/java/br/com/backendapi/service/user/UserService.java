@@ -1,13 +1,13 @@
-package br.com.courses.service.user;
+package br.com.backendapi.service.user;
 
-import br.com.courses.domain.user.User;
-import br.com.courses.domain.user.UserRegisterDTO;
-import br.com.courses.domain.user.UserResponseData;
-import br.com.courses.exception.UserAlreadyExistsException;
-import br.com.courses.exception.Validation;
-import br.com.courses.repository.IUserRepository;
-import br.com.courses.service.rabbitmq.RabbitMQSender;
-import br.com.courses.util.CPFCNPJValidator;
+import br.com.backendapi.domain.user.User;
+import br.com.backendapi.domain.user.UserRegisterDTO;
+import br.com.backendapi.domain.user.UserResponseData;
+import br.com.backendapi.exception.UserAlreadyExistsException;
+import br.com.backendapi.exception.Validation;
+import br.com.backendapi.repository.IUserRepository;
+import br.com.backendapi.service.rabbitmq.RabbitMQSender;
+import br.com.backendapi.util.CPFCNPJValidator;
 import com.google.gson.Gson;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;

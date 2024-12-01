@@ -1,6 +1,6 @@
-package br.com.courses.repository;
+package br.com.backendapi.repository;
 
-import br.com.courses.domain.user.User;
+import br.com.backendapi.domain.user.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.jpa.repository.JpaRepository;

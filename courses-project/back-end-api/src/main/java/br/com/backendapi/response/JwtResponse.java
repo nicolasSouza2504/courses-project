@@ -1,4 +1,4 @@
-package br.com.courses.response;
+package br.com.backendapi.response;
 
 
 import lombok.AllArgsConstructor;

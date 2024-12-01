@@ -1,8 +1,8 @@
-package br.com.courses.setup;
+package br.com.backendapi.setup;
 
 
-import br.com.courses.domain.user.User;
-import br.com.courses.repository.IUserRepository;
+import br.com.backendapi.domain.user.User;
+import br.com.backendapi.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
