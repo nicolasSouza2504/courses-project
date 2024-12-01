@@ -8,15 +8,20 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
     @Bean
+    public TopicExchange userExchange() {
+        return new TopicExchange("user.exchange", true, false);
+    }
+
+    @Bean
+    public Queue saveQueue() {
+        return new Queue("save", true);
+    }
+
+    @Bean
     public Binding saveBinding() {
-
-        ExchangeBuilder.topicExchange("user.exchange")
-                .durable(true)
-                .build();
-
-        Queue queue = new Queue("save", true);
-
-        return BindingBuilder.bind(queue).to(new TopicExchange("user.exchange")).with("save");
+        return BindingBuilder.bind(saveQueue())
+                .to(userExchange())
+                .with("save");
     }
 
 }

@@ -13,21 +13,26 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Binding registryUserSaveQueue(TopicExchange userExchange) {
-
-        Queue queue = new Queue("save", true);
-
-        return BindingBuilder.bind(queue).to(userExchange).with("save");
-
+    public Queue saveQueue() {
+        return new Queue("save", true);
     }
 
     @Bean
-    public Binding registryUserDDL(TopicExchange userExchange) {
-
-        Queue queue = new Queue("userddl", true);
-
-        return BindingBuilder.bind(queue).to(userExchange).with("userddl");
-
+    public Binding saveBinding() {
+        return BindingBuilder.bind(saveQueue())
+                .to(userExchange())
+                .with("save");
     }
 
+    @Bean
+    public Queue ddlQueue() {
+        return new Queue("ddluser", true);
+    }
+
+    @Bean
+    public Binding saveBindingDDL() {
+        return BindingBuilder.bind(ddlQueue())
+                .to(userExchange())
+                .with("ddluser");
+    }
 }
