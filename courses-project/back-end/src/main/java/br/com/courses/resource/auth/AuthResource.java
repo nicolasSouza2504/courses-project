@@ -2,6 +2,7 @@ package br.com.courses.resource.auth;
 
 import br.com.courses.domain.user.UserLogin;
 import br.com.courses.exception.BlockedUserException;
+import br.com.courses.handler.requesthandler.security.jwt.JWTContext;
 import br.com.courses.handler.requesthandler.security.jwt.JwtUtils;
 import br.com.courses.handler.requesthandler.security.user.AuthyUserDetails;
 import br.com.courses.repository.IUserRepository;
@@ -51,6 +52,8 @@ public class AuthResource {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             String jwt = jwtUtils.generateTokenForUser(authentication);
+
+            JWTContext.setJwt(jwt);
 
             AuthyUserDetails userDetails = (AuthyUserDetails) authentication.getPrincipal();
 

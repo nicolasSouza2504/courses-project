@@ -12,6 +12,7 @@ public interface ICourseRepository extends JpaRepository<Course, Long> {
     boolean existsCourseByName(String name);
 
     @Query("SELECT new br.com.backendapi.domain.course.CourseExibitionData(" +
+            "    c.id, " +
             "    c.name, " +
             "    COUNT(sub.id), " +
             "    CAST(c.avaiableSubscribes AS long)) " +

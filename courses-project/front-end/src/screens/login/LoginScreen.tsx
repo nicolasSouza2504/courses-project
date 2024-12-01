@@ -28,7 +28,7 @@ const Login: React.FC = () => {
                 NotificationComponent.triggerNotification("success", "Usuário autenticado com sucesso!", "Sucesso!");
 
                 setTimeout(() => {
-                    navigate('/');
+                    navigate('/courses');
                 }, 3000);
 
             } else {
