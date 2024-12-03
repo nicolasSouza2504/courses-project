@@ -31,7 +31,14 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
 
     async (response: AxiosResponse): Promise<AxiosResponse> => {
+
+        if (response.status === 401) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("cpf");
+        }
+
         return response;
+
     },
     (error: any) => {
         return Promise.reject(error);
