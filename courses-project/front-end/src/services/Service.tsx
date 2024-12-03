@@ -34,6 +34,12 @@ axiosInstance.interceptors.response.use(
         return response;
     },
     (error: any) => {
+
+        if (error.status === 401) {
+            localStorage.removeItem("auth-token");
+            localStorage.removeItem("cpf");
+        }
+
         return Promise.reject(error);
     }
 

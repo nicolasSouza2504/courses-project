@@ -56,7 +56,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
             } catch (Exception e) {
 
-                setErrorResponse(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, response, e.getMessage(), "Erro interno no servidor.");
+                setErrorResponse(HttpServletResponse.SC_UNAUTHORIZED, response, e.getMessage(), "Erro interno no servidor.");
 
                 return;
 
