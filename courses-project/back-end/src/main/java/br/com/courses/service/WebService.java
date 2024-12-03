@@ -63,9 +63,7 @@ public class WebService {
         return JWTContext.getJwt();
     }
 
-    // Method to create a generic error response body (can be customized further)
     private String createErrorResponse(String errorMessage) {
-        // You can customize the structure of the error message
         return "{\"error\": \"" + errorMessage + "\"}";
     }
 

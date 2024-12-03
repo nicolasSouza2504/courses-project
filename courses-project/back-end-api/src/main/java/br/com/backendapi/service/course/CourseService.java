@@ -23,6 +23,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Service
 @RequiredArgsConstructor
 public class CourseService implements ICourseService {
+
     private final ICourseRepository courseRepository;
     private final ReentrantLock lock = new ReentrantLock();
     private final IUserRepository userRepository;

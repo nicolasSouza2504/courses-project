@@ -4,8 +4,6 @@ import br.com.backendapi.domain.user.UserRegisterDTO;
 import br.com.backendapi.service.rabbitmq.RabbitMQSender;
 import br.com.backendapi.service.user.IUserService;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;

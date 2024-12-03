@@ -73,9 +73,12 @@ public class BackEndConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth/login",
-                                "/api/v1/user/**",
-                                "/api/v1/ping")
+                        .requestMatchers("/auth/login",
+                                "/user/**",
+                                "/ping",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/favicon.ico")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

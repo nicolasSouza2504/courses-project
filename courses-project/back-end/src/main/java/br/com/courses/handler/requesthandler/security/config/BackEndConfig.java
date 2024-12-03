@@ -2,18 +2,16 @@ package br.com.courses.handler.requesthandler.security.config;
 
 import br.com.courses.handler.requesthandler.security.jwt.AuthTokenFilter;
 import br.com.courses.handler.requesthandler.security.jwt.JwtAuthEntryPoint;
+import br.com.courses.handler.requesthandler.security.user.AuthyUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import br.com.courses.handler.requesthandler.security.user.*;
+
 import java.util.List;
 
 @Configuration
@@ -75,9 +73,12 @@ public class BackEndConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth/login",
-                                "/api/v1/user/**",
-                                "/api/v1/ping")
+                        .requestMatchers("/auth/login",
+                                "/user/**",
+                                "/ping",
+                                "/swagger-ui/**",
+                                "/v3/api-docs",
+                                "/v3/api-docs/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

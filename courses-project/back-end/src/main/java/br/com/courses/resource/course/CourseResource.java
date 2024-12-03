@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("${api.prefix}/courses")
+@RequestMapping("/courses")
 public class CourseResource {
 
     private final WebService webService;

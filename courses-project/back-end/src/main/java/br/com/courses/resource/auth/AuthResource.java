@@ -28,7 +28,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("${api.prefix}/auth")
+@RequestMapping("/auth")
 public class AuthResource {
 
     private final AuthenticationManager authenticationManager;
