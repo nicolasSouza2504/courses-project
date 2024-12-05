@@ -92,7 +92,7 @@ const CourseScreen: React.FC = () => {
 
     const handleLogout = () => {
 
-        localStorage.removeItem("token");
+        localStorage.removeItem("auth-token");
         localStorage.removeItem("cpf");
         navigation('/login');
 

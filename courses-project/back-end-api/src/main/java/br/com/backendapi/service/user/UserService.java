@@ -8,6 +8,7 @@ import br.com.backendapi.exception.Validation;
 import br.com.backendapi.repository.IUserRepository;
 import br.com.backendapi.service.rabbitmq.RabbitMQSender;
 import br.com.backendapi.util.CPFCNPJValidator;
+import br.com.backendapi.util.UtilNomeFormatado;
 import com.google.gson.Gson;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
@@ -85,7 +86,7 @@ public class UserService implements IUserService {
     }
 
     private Boolean validName(String name) {
-        return StringUtils.isNotEmpty(name) && name.matches("^[A-Z][a-z]+ [A-Z][a-z]+$");
+        return StringUtils.isNotEmpty(name) && UtilNomeFormatado.nomeValido(name);
     }
 
     private User buildUser(UserRegisterDTO userRegister) {
