@@ -35,6 +35,7 @@ public class UserService implements IUserService {
         return Optional.of(userRegister)
                 .filter(user -> !userRepository.existsByCpf(userRegister.cpf().replaceAll("[^0-9]", "")))
                 .filter(user -> !userRepository.existsByEmail(userRegister.email()))
+                .filter(user -> !userRepository.existsByName(userRegister.name()))
                 .map(req -> {
 
                     validateFields(userRegister);
